@@ -6,17 +6,56 @@ The Kemu Host manages recipe-runner worker processes for the Kemu platform, enab
 
 ## Installation
 
-### Via npm (Recommended)
+> For detailed installation instructions and troubleshooting, see [INSTALLATION.md](./INSTALLATION.md)
 
-Install globally using npm:
+### Quick Install (Recommended)
+
+Install directly using curl:
 
 ```bash
-npm install -g @kemu-io/kemu-host
+curl -fsSL https://raw.githubusercontent.com/kemu-io/kemu-host-releases/main/install.sh | bash
 ```
 
-After installation, the `kemud` binary will be available in your PATH.
+This will download and install the latest version of `kemud` to `/usr/local/bin`.
 
-### Direct Binary Download
+#### Installation Options
+
+Install a specific version:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kemu-io/kemu-host-releases/main/install.sh | bash -s -- --version 0.1.5
+```
+
+Install to a custom directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kemu-io/kemu-host-releases/main/install.sh | bash -s -- --install-dir ~/.local/bin
+```
+
+### Via Package Manager
+
+You can also install via npm, pnpm, yarn, or bun:
+
+```bash
+# Global install
+npm install -g @kemu-io/kemu-host
+bun install -g @kemu-io/kemu-host
+
+# Local install
+npm install @kemu-io/kemu-host
+bun install @kemu-io/kemu-host
+```
+
+**Note**: Some package managers (like bun) don't run postinstall scripts by default. If the binary isn't downloaded automatically, run the install script manually:
+
+```bash
+# After installing with bun or another package manager
+npm run install-binary
+# or
+node postinstall.js
+```
+
+### Manual Installation
 
 Download the appropriate binary for your platform from the [Releases](https://github.com/kemu-io/kemu-host-releases/releases) page:
 
@@ -32,10 +71,11 @@ Make the binary executable (Unix-like systems):
 chmod +x kemu-host-*
 ```
 
-Move it to a directory in your PATH:
+Rename and move it to a directory in your PATH:
 
 ```bash
-sudo mv kemu-host-* /usr/local/bin/kemud
+mv kemu-host-* kemud
+sudo mv kemud /usr/local/bin/
 ```
 
 ## Quick Start
